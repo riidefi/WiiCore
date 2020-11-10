@@ -246,6 +246,10 @@ void* rxArchiveFileGetData(rxArchiveFile* self) {
   return (char*)(self->parent->mHeader) + self->offset;
 }
 
+#ifndef GALAXY
+s32 rxArchiveFileGetOffset(const rxArchiveFile* self) { return self->offset; }
+#endif // GALAXY
+
 u32 rxArchiveFileGetSize(const rxArchiveFile* self) { return self->size; }
 
 bool rxArchiveFileClose(rxArchiveFile* self) { return true; }

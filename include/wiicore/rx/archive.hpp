@@ -141,6 +141,14 @@ bool rxArchiveFileOpenLow(const rxArchive* self, rxEntryHandle path,
 //!
 void* rxArchiveFileGetData(rxArchiveFile* self);
 
+//! @brief Get the address translation of an archive subfile.
+//!
+//! @param[in] self Pointer to a file.
+//!
+//! @return The number of bytes in the archive file until the subfile begins.
+//!
+s32 rxArchiveFileGetOffset(const rxArchiveFile* self);
+
 //! @brief Get the filesize of a file handle.
 //!
 //! @param[in] self Pointer to a file.
@@ -186,6 +194,12 @@ bool rxArchiveFolderRangeNext(rxArchiveFolderRange* self, rxArchiveEntry* pOut);
 //! @return If the operation succeeded.
 //!
 bool rxArchiveFolderRangeClose(rxArchiveFolderRange* self);
+
+#ifdef GALAXY
+inline s32 rxArchiveFileGetOffset(const rxArchiveFile* self) {
+  return self->offset;
+}
+#endif // GALAXY
 
 #ifdef __cplusplus
 }
